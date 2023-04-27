@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/m_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/m_16dp"
+            android:layout_marginVertical="@dimen/m_16dp"
+            android:paddingHorizontal="@dimen/m_16dp"
+            android:paddingVertical="@dimen/m_20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/m_16dp"
+            app:cardElevation="@dimen/m_5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/m_20dp">
+
+                <TextView
+                    android:id="@+id/greetTitle"
+                    style="@style/textStyle20"
+                    android:layout_width="@dimen/m_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/m_10dp"
+                    android:layout_marginTop="@dimen/m_20dp"
+                    android:gravity="center"
+                    android:text="@string/welcome_to_quiz_app"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/greetName"
+                    style="@style/textStyle16"
+                    android:layout_width="@dimen/m_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/m_10dp"
+                    android:layout_marginTop="@dimen/m_20dp"
+                    android:gravity="center"
+                    android:text="@string/what_should_we_call_you"
+                    android:textColor="@color/subBlack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/greetTitle" />
+
+                <EditText
+                    android:id="@+id/inputName"
+                    android:layout_width="@dimen/m_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/m_5dp"
+                    android:layout_marginVertical="@dimen/m_16dp"
+                    android:background="@drawable/background_editext"
+                    android:fontFamily="@font/poppins_regular_400"
+                    android:hint="@string/hint_name"
+                    android:inputType="text"
+                    android:minHeight="@dimen/m_50dp"
+                    android:paddingHorizontal="@dimen/m_16dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/subBlack"
+                    android:textSize="@dimen/t_16sp"
+                    app:layout_constraintBottom_toTopOf="@id/createUser"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/greetName" />
+
+                <include
+                    android:id="@+id/createUser"
+                    layout="@layout/layout_button_component"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/m_20dp"
+                    android:layout_marginBottom="@dimen/m_10dp"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
