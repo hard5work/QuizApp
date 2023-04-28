@@ -11,8 +11,8 @@
     <color name="dividerColor">#81000000</color>
     <color name="primaryColor">#FC611E</color>
     <color name="secondaryColor">#DC4605</color>
-    <color name="selectedCard">#B13702</color>
-    <color name="answerCard">#EF4F09</color>
+    <color name="selectedCard">#EF4F09</color><!--BD8E00-->
+    <color name="answerCard">#E1B327</color>
     <color name="backgroundColor">#FF9669</color>
     <color name="cancelColor">#F44336</color>
     <color name="subTitleColor">#000000</color>

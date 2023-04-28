@@ -15,22 +15,23 @@ public class QuestionModel implements Serializable {
     @PrimaryKey
     private int id;
 
-
     private String question;
     private String description;
     @Embedded
     private Answers answers;
+    @SerializedName("multiple_correct_answers")
     private String multipleCorrectAnswers;
+    @SerializedName("correct_answers")
     @Embedded
     private CorrectAnswers correctAnswers;
+    @SerializedName("correct_answer")
     private String correctAnswer;
     private String explanation;
     private String tip;
-    @TypeConverters({ListConverter.class})
+        @TypeConverters({ListConverter.class})
     private ArrayList<Tags> tags;
     private String category;
     private String difficulty;
-
 
     public int getId() {
         return id;
@@ -40,114 +41,92 @@ public class QuestionModel implements Serializable {
         this.id = id;
     }
 
-    @SerializedName("question")
     public String getQuestion() {
         return question;
     }
 
-    @SerializedName("question")
-    public void setQuestion(String value) {
-        this.question = value;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
-    @SerializedName("description")
     public String getDescription() {
         return description;
     }
 
-    @SerializedName("description")
-    public void setDescription(String value) {
-        this.description = value;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    @SerializedName("answers")
     public Answers getAnswers() {
         return answers;
     }
 
-    @SerializedName("answers")
-    public void setAnswers(Answers value) {
-        this.answers = value;
+    public void setAnswers(Answers answers) {
+        this.answers = answers;
     }
 
-    @SerializedName("multiple_correct_answers")
     public String getMultipleCorrectAnswers() {
         return multipleCorrectAnswers;
     }
 
-    @SerializedName("multiple_correct_answers")
-    public void setMultipleCorrectAnswers(String value) {
-        this.multipleCorrectAnswers = value;
+    public void setMultipleCorrectAnswers(String multipleCorrectAnswers) {
+        this.multipleCorrectAnswers = multipleCorrectAnswers;
     }
 
-    @SerializedName("correct_answers")
     public CorrectAnswers getCorrectAnswers() {
         return correctAnswers;
     }
 
-    @SerializedName("correct_answers")
-    public void setCorrectAnswers(CorrectAnswers value) {
-        this.correctAnswers = value;
+    public void setCorrectAnswers(CorrectAnswers correctAnswers) {
+        this.correctAnswers = correctAnswers;
     }
 
-    @SerializedName("correct_answer")
     public String getCorrectAnswer() {
         return correctAnswer;
     }
 
-    @SerializedName("correct_answer")
-    public void setCorrectAnswer(String value) {
-        this.correctAnswer = value;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
-    @SerializedName("explanation")
     public String getExplanation() {
         return explanation;
     }
 
-    @SerializedName("explanation")
-    public void setExplanation(String value) {
-        this.explanation = value;
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
     }
 
-    @SerializedName("tip")
     public String getTip() {
         return tip;
     }
 
-    @SerializedName("tip")
-    public void setTip(String value) {
-        this.tip = value;
+    public void setTip(String tip) {
+        this.tip = tip;
     }
 
-    @SerializedName("tags")
     public ArrayList<Tags> getTags() {
         return tags;
     }
 
-    @SerializedName("tags")
-    public void setTags(ArrayList<Tags> value) {
-        this.tags = value;
+    public void setTags(ArrayList<Tags> tags) {
+        this.tags = tags;
     }
 
-    @SerializedName("category")
     public String getCategory() {
         return category;
     }
 
-    @SerializedName("category")
-    public void setCategory(String value) {
-        this.category = value;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    @SerializedName("difficulty")
     public String getDifficulty() {
         return difficulty;
     }
 
-    @SerializedName("difficulty")
-    public void setDifficulty(String value) {
-        this.difficulty = value;
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
     }
 
     @Override
@@ -167,4 +146,179 @@ public class QuestionModel implements Serializable {
                 ", difficulty='" + difficulty + '\'' +
                 '}';
     }
+
+    public static class Answers implements Serializable {
+        @SerializedName("answer_a")
+        private String answerA;
+        @SerializedName("answer_b")
+        private String answerB;
+        @SerializedName("answer_c")
+        private String answerC;
+        @SerializedName("answer_d")
+        private String answerD;
+        @SerializedName("answer_e")
+        private String answerE;
+        @SerializedName("answer_f")
+        private String answerF;
+
+        public String getAnswerA() {
+            return answerA;
+        }
+
+        public void setAnswerA(String answerA) {
+            this.answerA = answerA;
+        }
+
+        public String getAnswerB() {
+            return answerB;
+        }
+
+        public void setAnswerB(String answerB) {
+            this.answerB = answerB;
+        }
+
+        public String getAnswerC() {
+            return answerC;
+        }
+
+        public void setAnswerC(String answerC) {
+            this.answerC = answerC;
+        }
+
+        public String getAnswerD() {
+            return answerD;
+        }
+
+        public void setAnswerD(String answerD) {
+            this.answerD = answerD;
+        }
+
+        public String getAnswerE() {
+            return answerE;
+        }
+
+        public void setAnswerE(String answerE) {
+            this.answerE = answerE;
+        }
+
+        public String getAnswerF() {
+            return answerF;
+        }
+
+        public void setAnswerF(String answerF) {
+            this.answerF = answerF;
+        }
+
+        @Override
+        public String toString() {
+            return "Answers{" +
+                    "answerA='" + answerA + '\'' +
+                    ", answerB='" + answerB + '\'' +
+                    ", answerC='" + answerC + '\'' +
+                    ", answerD='" + answerD + '\'' +
+                    ", answerE='" + answerE + '\'' +
+                    ", answerF='" + answerF + '\'' +
+                    '}';
+        }
+    }
+
+
+    public static class CorrectAnswers implements Serializable {
+        @SerializedName("answer_a_correct")
+        private String answerACorrect;
+        @SerializedName("answer_b_correct")
+        private String answerBCorrect;
+        @SerializedName("answer_c_correct")
+        private String answerCCorrect;
+        @SerializedName("answer_d_correct")
+        private String answerDCorrect;
+        @SerializedName("answer_e_correct")
+        private String answerECorrect;
+        @SerializedName("answer_f_correct")
+        private String answerFCorrect;
+
+        public String getAnswerACorrect() {
+            return answerACorrect;
+        }
+
+        public void setAnswerACorrect(String answerACorrect) {
+            this.answerACorrect = answerACorrect;
+        }
+
+        public String getAnswerBCorrect() {
+            return answerBCorrect;
+        }
+
+        public void setAnswerBCorrect(String answerBCorrect) {
+            this.answerBCorrect = answerBCorrect;
+        }
+
+        public String getAnswerCCorrect() {
+            return answerCCorrect;
+        }
+
+        public void setAnswerCCorrect(String answerCCorrect) {
+            this.answerCCorrect = answerCCorrect;
+        }
+
+        public String getAnswerDCorrect() {
+            return answerDCorrect;
+        }
+
+        public void setAnswerDCorrect(String answerDCorrect) {
+            this.answerDCorrect = answerDCorrect;
+        }
+
+        public String getAnswerECorrect() {
+            return answerECorrect;
+        }
+
+        public void setAnswerECorrect(String answerECorrect) {
+            this.answerECorrect = answerECorrect;
+        }
+
+        public String getAnswerFCorrect() {
+            return answerFCorrect;
+        }
+
+        public void setAnswerFCorrect(String answerFCorrect) {
+            this.answerFCorrect = answerFCorrect;
+        }
+
+        @Override
+        public String toString() {
+            return "CorrectAnswers{" +
+                    "answerACorrect='" + answerACorrect + '\'' +
+                    ", answerBCorrect='" + answerBCorrect + '\'' +
+                    ", answerCCorrect='" + answerCCorrect + '\'' +
+                    ", answerDCorrect='" + answerDCorrect + '\'' +
+                    ", answerECorrect='" + answerECorrect + '\'' +
+                    ", answerFCorrect='" + answerFCorrect + '\'' +
+                    '}';
+        }
+    }
+
+    @Entity(tableName = "Tags")
+    public static class Tags {
+        private String name;
+
+        @SerializedName("name")
+        public String getName() {
+            return name;
+        }
+
+        @SerializedName("name")
+        public void setName(String value) {
+            this.name = value;
+        }
+
+        @Override
+        public String toString() {
+            return "Tags{" +
+                    "name='" + name + '\'' +
+                    '}';
+        }
+    }
+
+
 }

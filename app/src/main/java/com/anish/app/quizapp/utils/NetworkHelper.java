@@ -29,11 +29,15 @@ public class NetworkHelper {
             Network networkCapabilities = connectivityManager.getActiveNetwork();
             NetworkCapabilities activeNetwork = connectivityManager.getNetworkCapabilities(networkCapabilities);
 
-            if (activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                result = true;
-            } else if (activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                result = true;
-            } else result = activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET);
+            if (networkCapabilities != null) {
+                if (activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    result = true;
+                } else if (activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    result = true;
+                } else result = activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET);
+            } else {
+                result = false;
+            }
         } else {
             if (connectivityManager != null) {
                 NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

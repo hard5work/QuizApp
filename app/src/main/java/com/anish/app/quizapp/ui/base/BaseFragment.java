@@ -1,5 +1,6 @@
 package com.anish.app.quizapp.ui.base;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,11 +20,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
 
+import com.anish.app.quizapp.data.sp.SharedPref;
+
 import dagger.hilt.android.AndroidEntryPoint;
 
 
 public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
 
+    public SharedPref prefManager;
+    private ProgressDialog progressDialog;
     private T mViewDataBinding;
 
     @LayoutRes
@@ -48,8 +53,17 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        prefManager = new SharedPref(requireContext());
+        progressDialog = new ProgressDialog(requireContext());
+        progressDialog.setCancelable(false);
         initView(mViewDataBinding.getRoot(), mViewDataBinding);
 
+    }
+    public void showDialog(){
+        progressDialog.show();
+    }
+    public void hideDialog(){
+        progressDialog.dismiss();
     }
 
 
@@ -57,8 +71,6 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
-
-
 
 
 }

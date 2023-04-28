@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="answers"
+            type="String" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
@@ -14,12 +21,13 @@
 
         <TextView
             android:id="@+id/answerText"
+            style="@style/textStyle16"
             android:layout_width="@dimen/m_0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/m_5dp"
+            android:text="@{answers}"
             android:textColor="@color/white"
-            style="@style/textStyle16"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

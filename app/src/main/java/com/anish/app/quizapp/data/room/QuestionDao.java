@@ -18,5 +18,5 @@ public interface QuestionDao {
     List<QuestionModel> getQuestions();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(QuestionModel... user);
+    void insert(QuestionModel user);
 }

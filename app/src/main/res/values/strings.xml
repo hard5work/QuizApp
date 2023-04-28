@@ -8,4 +8,5 @@
     <string name="your_score_was_70_points">Your score was 70 points</string>
     <string name="_60">60</string>
     <string name="what_are_the_sumbols">What are the sumbols?</string>
+    <string name="my_string"> Questions <b>%1$d</b>/10</string>
 </resources>

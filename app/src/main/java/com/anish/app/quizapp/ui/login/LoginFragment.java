@@ -28,8 +28,38 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
         this.mViewDataBinding = (FragmentLoginBinding) mViewDataBinding;
         buttonComponent = new ButtonComponent(this.mViewDataBinding.createUser);
         buttonComponent.setText("Create User");
+
+        checkValidation();
         buttonComponent.onClicked(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_quizFragment);
+         onClickFunction();
         });
+    }
+
+    public void onClickFunction(){
+        if (getText().isEmpty()) {
+            mViewDataBinding.inputName.setError("Please enter name.");
+        } else {
+            mViewDataBinding.inputName.setError(null);
+            prefManager.setUsername(getText());
+            navigate();
+        }
+    }
+
+    public void checkValidation() {
+        if (!prefManager.getUsername().isEmpty()) {
+            navigate();
+        }
+    }
+
+    public void setText(String name) {
+        mViewDataBinding.inputName.setText(name);
+    }
+
+    public String getText() {
+        return mViewDataBinding.inputName.getText().toString().trim();
+    }
+
+    private void navigate() {
+        Navigation.findNavController(mViewDataBinding.getRoot()).navigate(R.id.action_loginFragment_to_quizFragment);
     }
 }
