@@ -1,5 +1,6 @@
 package com.anish.app.quizapp.ui.result;
 
+import android.os.Build;
 import android.os.Debug;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +32,10 @@ public class ResultFragment extends BaseFragment<FragmentResultBinding> {
     protected void initView(View mRootView, ViewDataBinding mViewDataBinding) {
         this.mViewDataBinding = (FragmentResultBinding) mViewDataBinding;
 
+        this.mViewDataBinding.progressBar.setMax(100);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.mViewDataBinding.progressBar.setMin(0);
+        }
         assert getArguments() != null;
         int myArgument = getArguments().getInt("myArgument", 0);
         if (myArgument == 0) {
@@ -50,7 +55,6 @@ public class ResultFragment extends BaseFragment<FragmentResultBinding> {
         buttonComponent.setText("Take Another Shot");
         buttonComponent.onClicked(v -> {
             getArguments().clear();
-            this.mViewDataBinding.progressBar.setProgress(0);
             Navigation.findNavController(v).navigate(R.id.action_resultFragment_to_quizFragment);
         });
     }

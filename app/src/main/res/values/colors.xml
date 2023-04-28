@@ -14,6 +14,7 @@
     <color name="selectedCard">#EF4F09</color><!--BD8E00-->
     <color name="answerCard">#E1B327</color>
     <color name="backgroundColor">#FF9669</color>
+    <color name="resultBackground">#F85A18</color>
     <color name="cancelColor">#F44336</color>
     <color name="subTitleColor">#000000</color>
     <color name="green">#6ECD71</color>
