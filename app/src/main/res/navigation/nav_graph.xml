@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.anish.app.quizapp.ui.result.ResultFragment"
+        android:name="com.anish.app.quizapp.result.ResultFragment"
         android:label="ResultFragment"
         tools:layout="@layout/fragment_result">
         <action

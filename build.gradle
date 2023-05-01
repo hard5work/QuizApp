@@ -4,6 +4,7 @@ buildscript {
     dependencies {
         // other plugins...
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.45'
+        classpath "org.mockito:mockito-core:4.3.1"
     }
 }
 plugins {

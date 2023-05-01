@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
-    private FragmentLoginBinding mViewDataBinding;
+    public FragmentLoginBinding mViewDataBinding;
 
     private ButtonComponent buttonComponent;
 
@@ -59,7 +59,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> {
         return mViewDataBinding.inputName.getText().toString().trim();
     }
 
-    private void navigate() {
+    public void navigate() {
         Navigation.findNavController(mViewDataBinding.getRoot()).navigate(R.id.action_loginFragment_to_quizFragment);
     }
 }

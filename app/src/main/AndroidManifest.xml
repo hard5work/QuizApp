@@ -26,6 +26,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
+
+    <!--<instrumentation
+        android:name="androidx.test.runner.AndroidJUnitRunner"
+        android:functionalTest="false"
+        android:handleProfiling="false"
+        android:label="Tests for com.anish.app.quizapp"
+        android:targetPackage="com.anish.app.quizapp.ui.LoginFragmentTest" />-->
 
 </manifest>
