@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.anish.app.quizapp.data.model.QuestionModel;
 import com.anish.app.quizapp.data.repository.ApiRepository;
+import com.anish.app.quizapp.data.room.AppDatabase;
 import com.anish.app.quizapp.utils.NetworkHelper;
 import com.anish.app.quizapp.utils.enums.Resource;
 
@@ -22,11 +23,15 @@ import io.reactivex.disposables.Disposable;
 @HiltViewModel
 public class QuizVM extends ViewModel {
 
+    @Inject
+    AppDatabase appDatabase;
     private String TAG = "QuizVM";
     public ApiRepository apiRepository;
     public NetworkHelper networkHelper;
     private MutableLiveData<Resource<ArrayList<QuestionModel>>> models = new MutableLiveData<>();
     public LiveData<Resource<ArrayList<QuestionModel>>> _data;
+    private MutableLiveData<Resource<ArrayList<QuestionModel>>> offline = new MutableLiveData<>();
+    public LiveData<Resource<ArrayList<QuestionModel>>> _getOfflinedata;
 
     public LiveData<Resource<ArrayList<QuestionModel>>> getData() {
         if (_data == null) {
@@ -75,6 +80,17 @@ public class QuizVM extends ViewModel {
         } else {
             models.postValue(Resource.error("No Internet connection", null));
         }
+
+    }
+    void setOfflineData(ArrayList<QuestionModel> model) {
+        for (QuestionModel data : model) {
+            try {
+                appDatabase.questionDao().insert(data);
+            } catch (Exception e) {
+                Log.e(TAG, "CATCH EXCEPTION WHILE INSERTING DATA " + e.getMessage());
+            }
+        }
+
 
     }
 }

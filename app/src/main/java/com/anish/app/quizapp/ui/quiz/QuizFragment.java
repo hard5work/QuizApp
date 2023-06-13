@@ -103,7 +103,6 @@ public class QuizFragment extends BaseFragment<FragmentQuizBinding> {
 
             @Override
             public void onFinish() {
-//                ((FragmentQuizBinding) mViewDataBinding).timer.setText("Time's up!");
                 navigateNextPage(mViewDataBinding.getRoot());
 
 
@@ -187,16 +186,7 @@ public class QuizFragment extends BaseFragment<FragmentQuizBinding> {
                 case SUCCESS:
                     hideDialog();
                     myQuestionList.clear();
-
-                    for (QuestionModel data : arrayListResource.getData()) {
-                        try {
-//                            Log.e(TAG, "data inserting " + data);
-                            appDatabase.questionDao().insert(data);
-                        } catch (Exception e) {
-                            Log.e(TAG, "CATCH EXCEPTION WHILE INSERTING DATA " + e.getMessage());
-                        }
-                    }
-
+                    quizVM.setOfflineData(arrayListResource.getData());
                     getDataFromRoom();
                     getRandomNumber();
 
@@ -211,7 +201,7 @@ public class QuizFragment extends BaseFragment<FragmentQuizBinding> {
     }
 
     private String getQuestionData() {
-        return getString(R.string.my_string, countQuestion+1);
+        return getString(R.string.my_string, countQuestion + 1);
     }
 
     private void getDataFromRoom() {
@@ -230,6 +220,10 @@ public class QuizFragment extends BaseFragment<FragmentQuizBinding> {
 
     private void viewAnswers(QuestionModel model) {
         currentModel = model;
+        if (model.getAnswers() == null) {
+            getRandomNumber();
+            return;
+        }
         setVisibleItems(model.getAnswers().getAnswerA(), mViewDataBinding.answerA.getRoot());
         setVisibleItems(model.getAnswers().getAnswerB(), mViewDataBinding.answerB.getRoot());
         setVisibleItems(model.getAnswers().getAnswerC(), mViewDataBinding.answerC.getRoot());

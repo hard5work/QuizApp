@@ -3,22 +3,33 @@ package com.anish.app.quizapp.data.sp;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class SharedPref{
-    private SharedPreferences sharedPreferences;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
+import dagger.hilt.InstallIn;
+import dagger.hilt.components.SingletonComponent;
+
+
+public class SharedPref implements SharedPreferencesWrapper {
+
+    SharedPreferences sharedPreferences;
+
 
     public SharedPref(Context context) {
-        sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        this.sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
     }
 
+    @Override
+    public void setUsername(String value) {
+        SharedPreferences.Editor editor = this.sharedPreferences.edit();
+        editor.putString("username", value);
+        editor.apply();
+    }
+
+    @Override
     public String getUsername() {
-        return sharedPreferences.getString("username", "");
+        return this.sharedPreferences.getString("username", "");
     }
-
-
-    public void setUsername(String username) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("username", username);
-        editor.commit();
-    }
-
 }
