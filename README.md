@@ -1,12 +1,10 @@
 # QuizApp
 
-
-[Project Description]
 This project is a quiz app developed using a single activity-based approach. The objective is to provide a user-friendly interface for users to participate in quizzes and test their knowledge. The app utilizes open-source APIs to retrieve quiz questions and present them to the users.
 
 Features
 
-User-friendly interface for quiz participation
+User-friendly interface for quiz participation.
 Retrieval of quiz questions from open-source APIs
 Display of multiple-choice questions with options
 Calculation and display of the final quiz score
@@ -47,6 +45,7 @@ Open the project in your preferred IDE.
 Build the project to resolve dependencies.
 Run the app on an emulator or physical device.
 
+
 ## Usage
 
 Launch the app on your device.
@@ -56,5 +55,3 @@ Answer each quiz question by selecting one of the provided options.
 After answering a question, review the immediate feedback.
 Proceed to the next question until all questions are answered.
 Upon completing the quiz, view your final score and the option to retake the quiz or exit the app.
-
-[Provide instructions on how to use the project or its features]
