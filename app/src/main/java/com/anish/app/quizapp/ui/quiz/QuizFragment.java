@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -21,6 +22,12 @@ import com.anish.app.quizapp.utils.enums.Resource;
 import com.anish.app.quizapp.utils.enums.Status;
 import com.anish.app.quizapp.utils.layout.AnswerComponent;
 import com.anish.app.quizapp.utils.layout.ButtonComponent;
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +74,8 @@ public class QuizFragment extends BaseFragment<FragmentQuizBinding> {
     private boolean ansF = false;
     private String TAG = "QuizFragment";
 
+    private InterstitialAd mInterstitialAd;
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_quiz;
@@ -77,6 +86,23 @@ public class QuizFragment extends BaseFragment<FragmentQuizBinding> {
         this.mViewDataBinding = (FragmentQuizBinding) mViewDataBinding;
 
         quizVM = new ViewModelProvider(this).get(QuizVM.class);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(requireContext(), requireContext().getResources().getString(R.string.ad_id_interstitial_live), adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                super.onAdLoaded(interstitialAd);
+                mInterstitialAd = interstitialAd;
+                Log.e(TAG, "adv is now loaded");
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                mInterstitialAd = null;
+                Log.e(TAG,"adv load failed -> " + loadAdError.getMessage());
+            }
+        });
 
 
         initialsViews();
@@ -110,6 +136,39 @@ public class QuizFragment extends BaseFragment<FragmentQuizBinding> {
         }.start();
     }
 
+    private void showFullScreenAd(){
+
+        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+            }
+
+            @Override
+            public void onAdDismissedFullScreenContent() {
+                super.onAdDismissedFullScreenContent();
+                mInterstitialAd = null;
+                navigateNextPage(mViewDataBinding.getRoot());
+            }
+
+            @Override
+            public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+                super.onAdFailedToShowFullScreenContent(adError);
+                mInterstitialAd = null;
+                navigateNextPage(mViewDataBinding.getRoot());
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+            }
+
+            @Override
+            public void onAdShowedFullScreenContent() {
+                super.onAdShowedFullScreenContent();
+            }
+        });
+    }
     private void onSubmit() {
         buttonComponent.onClicked(v -> {
             if (!selectedAnswer.isEmpty()) {
@@ -137,7 +196,11 @@ public class QuizFragment extends BaseFragment<FragmentQuizBinding> {
                 }
                 mViewDataBinding.scores.setText(String.valueOf(totalPoints));
                 if (countQuestion >= maxQuestion) {
-                    navigateNextPage(v);
+                    if (mInterstitialAd != null) {
+                        mInterstitialAd.show(requireActivity());
+                        showFullScreenAd();
+                    } else
+                        navigateNextPage(v);
                 } else {
                     getRandomNumber();
                     countQuestion++;
@@ -157,6 +220,7 @@ public class QuizFragment extends BaseFragment<FragmentQuizBinding> {
         Bundle bundle = new Bundle();
         bundle.putInt("myArgument", totalPoints);
         Navigation.findNavController(v).navigate(R.id.action_quizFragment_to_resultFragment, bundle);
+        totalPoints = 0;
     }
 
     private void initialsViews() {

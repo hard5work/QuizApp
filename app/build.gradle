@@ -100,4 +100,5 @@ dependencies {
             because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
         }
     }
+    implementation 'com.google.android.gms:play-services-ads:22.4.0'
 }
