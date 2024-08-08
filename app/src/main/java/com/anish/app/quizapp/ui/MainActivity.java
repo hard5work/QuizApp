@@ -36,11 +36,14 @@ public class MainActivity extends AppCompatActivity {
         MobileAds.initialize(this, initializationStatus -> {
         });
 
-        AdView adView = new AdView(this);
-        adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId(getResources().getString(R.string.ad_id_banner_live));
+//        AdView adView = new AdView(this);
+//        adView.setAdSize(AdSize.BANNER);
+//        adView.setAdUnitId(getResources().getString(R.string.ad_id_banner_live));
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.setAdSize(AdSize.BANNER);
+//        mAdView.setAdUnitId(getResources().getString(R.string.ad_id_banner_live));
+
         mAdView.loadAd(adRequest);
 
 

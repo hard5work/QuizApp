@@ -100,7 +100,7 @@ public class QuizFragment extends BaseFragment<FragmentQuizBinding> {
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
                 mInterstitialAd = null;
-                Log.e(TAG,"adv load failed -> " + loadAdError.getMessage());
+                Log.e(TAG, "adv load failed -> " + loadAdError.getMessage());
             }
         });
 
@@ -136,7 +136,7 @@ public class QuizFragment extends BaseFragment<FragmentQuizBinding> {
         }.start();
     }
 
-    private void showFullScreenAd(){
+    private void showFullScreenAd() {
 
         mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
             @Override
@@ -169,6 +169,7 @@ public class QuizFragment extends BaseFragment<FragmentQuizBinding> {
             }
         });
     }
+
     private void onSubmit() {
         buttonComponent.onClicked(v -> {
             if (!selectedAnswer.isEmpty()) {

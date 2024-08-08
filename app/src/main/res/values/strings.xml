@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">Quiz App</string>
-    <string name="welcome_to_quiz_app">WELCOME TO QUIZ APP</string>
+    <string name="app_name">Quiz Time</string>
+    <string name="welcome_to_quiz_app">WELCOME TO QUIZ TIME</string>
     <string name="what_should_we_call_you">What should we call you?</string>
     <string name="hint_name">Name:</string>
     <string name="well_played_ivan">Well played Ivan</string>
     <string name="score">Score</string>
     <string name="your_score_was_70_points">Your score was 70 points</string>
     <string name="_60">60</string>
-    <string name="what_are_the_sumbols">What are the sumbols?</string>
+    <string name="what_are_the_sumbols">What are the symbols?</string>
     <string name="my_string"> Questions <b>%1$d</b>/10</string>
     <string name="ad_id">ca-app-pub-1456759243536077~4647217281</string>
     <string name="ad_id_banner_live">ca-app-pub-1456759243536077/8029441984</string>
